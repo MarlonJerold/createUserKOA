@@ -29,11 +29,7 @@ const validateInput = (name, email) => {
     return errors.length > 0 ? { errors } : null;
 };
   
-const createAndAddUser = (usersList, name, email) => {
-    const newUserId = generateUserId(usersList);
-    const newUser = createUser(newUserId, name, email);
-    return addUser(usersList, newUser);
-};
+const createAndAddUser = (usersList, name, email) => addUser(usersList, createUser(generateUserId(usersList), name, email));
 
 exports.createUserHandler = async (ctx) => {
     const { name, email } = ctx.request.body;
